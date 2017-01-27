@@ -55,16 +55,22 @@ class User():
     def greet_user(self):
         print("Hi, I'm " + self.firstname.title() + self.lastname.title() + ". Nice to meet you.")
 
-class Admin(User):
-    def __init__(self, firstname, lastname, gender, age):
-        super().__init__(firstname, lastname, gender, age)
+
+class Privileges():
+    def __init__(self):
         self.privileges = ['can add post', 'can delete post', 'can ban user']
 
+
     def show_privileges(self):
-        print("Administraor's privileges are:")
         for privilege in self.privileges:
             print(privilege.title())
 
+
+class Admin(User):
+    def __init__(self, firstname, lastname, gender, age):
+        super().__init__(firstname, lastname, gender, age)
+        self.privileges = Privileges()
+
 test_admin = Admin('Chen', 'Su', 'male', 20)
 test_admin.describe_user()
-test_admin.show_privileges()
+test_admin.privileges.show_privileges()
