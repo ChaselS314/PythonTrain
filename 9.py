@@ -18,14 +18,19 @@ class Restaurant():
     def increment_number_served(self, increment_number_served):
         self.number_served += increment_number_served
 
-guoshen_restaurant = Restaurant('guo shen', 'ma la tang')
-guoshen_restaurant.describe_restaurant()
 
-chuancaiguan_restaurant = Restaurant('chuan cai guan', 'chuan cai')
-chuancaiguan_restaurant.describe_restaurant()
+class IceCreamStand(Restaurant):
+    def __init__(self, restaurant_name, cuisine_type, flavors):
+        super().__init__(restaurant_name, cuisine_type)
+        self.flavors = flavors
 
-hujin_restaurant = Restaurant('hu jin jiu lou', 'hu bei cai')
-hujin_restaurant.describe_restaurant()
+    def describe_flavors(self):
+        for flavor in self.flavors:
+            print(flavor.title())
+
+my_icecreamstand = IceCreamStand('chayin', 'ice cream', ['coffee', 'coco', 'green tea'])
+my_icecreamstand.describe_restaurant()
+my_icecreamstand.describe_flavors()
 
 class User():
     def __init__(self, firstname, lastname, gender, age):
@@ -50,28 +55,16 @@ class User():
     def greet_user(self):
         print("Hi, I'm " + self.firstname.title() + self.lastname.title() + ". Nice to meet you.")
 
-suchen_user = User('Chen', 'Su', 'male', 20)
-suxin_user = User('Xin', 'Su', 'female', 10)
-yoyo_user = User('Yoyo', 'Huang', 'female', 22)
+class Admin(User):
+    def __init__(self, firstname, lastname, gender, age):
+        super().__init__(firstname, lastname, gender, age)
+        self.privileges = ['can add post', 'can delete post', 'can ban user']
 
-suchen_user.describe_user()
-suxin_user.describe_user()
-yoyo_user.describe_user()
+    def show_privileges(self):
+        print("Administraor's privileges are:")
+        for privilege in self.privileges:
+            print(privilege.title())
 
-suchen_user.greet_user()
-suxin_user.greet_user()
-yoyo_user.greet_user()
-
-restaurant = Restaurant('hong ding dou lao', 'huoguo')
-restaurant.describe_restaurant()
-print("It have served " + str(restaurant.number_served) + " customers.")
-restaurant.set_number_served(100)
-print("It have served " + str(restaurant.number_served) + " customers.")
-restaurant.increment_number_served(50)
-print("It have served " + str(restaurant.number_served) + " customers.")
-
-suchen_user.increment_login_attempts()
-suchen_user.increment_login_attempts()
-suchen_user.describe_user()
-suchen_user.reset_login_attempts()
-suchen_user.describe_user()
+test_admin = Admin('Chen', 'Su', 'male', 20)
+test_admin.describe_user()
+test_admin.show_privileges()
