@@ -1,0 +1,3 @@
+In Python you can do internet-programing.
+In Python you can do secientistic caculate.
+In Python you can do game-programing.
