@@ -62,7 +62,7 @@
 filename = 'the American Journal of Archaeology.txt'
 
 try:
-	with open(filename, 'r', encoding = 'utf-8') as file_object:
+	with open(filename, 'r', encoding = 'utf_8') as file_object:
 		contents = file_object.read()
 		cnt = contents.lower().count('the')
 		print("The word 'the' has occupied for " + str(cnt) + " times in <" + filename + "> .")
