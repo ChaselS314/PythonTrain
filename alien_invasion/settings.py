@@ -5,7 +5,7 @@ class Settings():
 		"""初始化游戏的设置"""
 		# 屏幕设置
 		self.screen_width = 960
-		self.screen_height = 480
+		self.screen_height = 600
 		self.bg_color = (230, 230, 230)
 
 		# 飞船设置 
@@ -16,4 +16,9 @@ class Settings():
 		self.bullet_width = 3
 		self.bullet_height = 15
 		self.bullet_color = (60, 60, 60)
-		self.bullets_allowed = 3 # 允许同时存在的子弹最大数量
+		self.bullets_allowed = 8 # 允许同时存在的子弹最大数量
+
+		# 外星人设置
+		self.alien_speed_factor_x = 1
+		self.alien_speed_factor_y = 2
+		
