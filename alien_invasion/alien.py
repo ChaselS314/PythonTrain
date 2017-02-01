@@ -21,6 +21,9 @@ class Alien(Sprite):
 		# 存储外星人的准确位置
 		self.x = float(self.rect.x)
 
+		# 表示外星人的移动方向，-表示左，+表示右
+		self.move_direction = 1
+
 
 	def blitme(self):
 		"""在指定位置绘制外星人"""

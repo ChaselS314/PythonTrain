@@ -10,6 +10,7 @@ class Settings():
 
 		# 飞船设置 
 		self.ship_speed_factor = 1.5
+		self.ship_limit = 3
 
 		# 子弹设置
 		self.bullet_speed_factor = 1
@@ -19,6 +20,5 @@ class Settings():
 		self.bullets_allowed = 8 # 允许同时存在的子弹最大数量
 
 		# 外星人设置
-		self.alien_speed_factor_x = 1
-		self.alien_speed_factor_y = 2
-		
+		self.alien_speed_factor_x = 0.7
+		self.alien_speed_factor_y = 5
