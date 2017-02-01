@@ -1,1 +1,1 @@
-###Solutions of [**Python Crash Course**](www.nostarch.com/pythoncrashcourse)
+###Solutions of [**Python Crash Course**](https://www.nostarch.com/pythoncrashcourse)
