@@ -23,6 +23,7 @@ def fire_bullet(ai_settings, screen, ship, bullets):
 		new_bullet = Bullet(ai_settings, screen, ship)
 		bullets.add(new_bullet)
 
+
 def check_keyup_events(event, ship):
 	"""响应按键松开"""
 	if event.key == pygame.K_RIGHT:
@@ -31,7 +32,7 @@ def check_keyup_events(event, ship):
 		ship.moving_left = False
 
 
-def check_events(ai_settings, screen, ship, bullets):
+def check_events(ai_settings, screen, stats, play_button, ship, bullets, aliens):
 	"""响应按键和鼠标事件"""
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -42,9 +43,34 @@ def check_events(ai_settings, screen, ship, bullets):
 
 		elif event.type == pygame.KEYUP:
 			check_keyup_events(event, ship)
+		
+		elif event.type == pygame.MOUSEBUTTONDOWN:
+			check_play_button(ai_settings, screen, stats, play_button, ship, bullets, aliens)
 
 
-def update_screen(ai_settings, screen, ship, bullets, aliens):
+def check_play_button(ai_settings, screen, stats, play_button, ship, bullets, aliens):
+	"""当鼠标点击play按钮时，开始游戏"""
+	# 游戏进行状态时，忽视对play按钮区域的响应
+	if stats.game_active:
+		return
+	mouse_x, mouse_y = pygame.mouse.get_pos()
+	if play_button.rect.collidepoint(mouse_x, mouse_y):
+		# 隐藏光标
+		pygame.mouse.set_visible(False)
+		# 重置游戏状态
+		stats.reset_stats()
+		stats.game_active = True
+
+		# 清空外星人和子弹
+		aliens.empty()
+		bullets.empty()
+
+		# 创建一个新的外星人群，并将飞船放到屏幕底部中央
+		create_fleet(ai_settings, screen, ship, aliens)
+		ship.rect.centerx = ship.screen_rect.centerx
+
+
+def update_screen(ai_settings, screen, stats, play_button, ship, bullets, aliens):
 	"""更新屏幕上的图像，并切换到新屏幕"""
 	# 每次循环前都重绘屏幕
 	screen.fill(ai_settings.bg_color)
@@ -54,6 +80,9 @@ def update_screen(ai_settings, screen, ship, bullets, aliens):
 	# 绘制每一颗子弹
 	for bullet in bullets:
 		bullet.draw_bullet()
+	# 当游戏处于非活动状态时，绘制play按钮
+	if stats.game_active == False:
+		play_button.draw_button()
 
 	# 让最近绘制的屏幕可见
 	pygame.display.flip()
@@ -122,7 +151,9 @@ def ship_hit(ai_settings, screen, stats, ship, bullets, aliens):
 		# 暂停
 		sleep(0.5)
 	else:
-		stats.game_active = False 
+		stats.game_active = False
+		# 游戏结束显示光标
+		pygame.mouse.set_visible(True)
 
 
 def get_number_rows(ai_settings, ship, alien_height):

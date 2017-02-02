@@ -6,7 +6,7 @@ class GameStats():
 		self.ai_settings = ai_settings
 		self.reset_stats()
 		# 游戏状态
-		self.game_active = True
+		self.game_active = False
 
 
 	def reset_stats(self):

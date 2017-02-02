@@ -21,4 +21,4 @@ class Settings():
 
 		# 外星人设置
 		self.alien_speed_factor_x = 0.7
-		self.alien_speed_factor_y = 5
+		self.alien_speed_factor_y = 50
