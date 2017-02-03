@@ -152,10 +152,9 @@ def update_aliens(ai_settings, screen, stats, scoreboard, ship, bullets, aliens)
 
 def ship_hit(ai_settings, screen, stats, scoreboard, ship, bullets, aliens):
 	"""响应外星人与飞船相撞"""
+	# ship剩余数量减1
+	stats.ships_left -= 1
 	if stats.ships_left > 0:
-		# ship剩余数量减1
-		stats.ships_left -= 1
-
 		# 清空外星人和子弹
 		aliens.empty()
 		bullets.empty()
@@ -167,6 +166,7 @@ def ship_hit(ai_settings, screen, stats, scoreboard, ship, bullets, aliens):
 		# 暂停
 		sleep(0.5)
 	else:
+		# Game Over
 		stats.game_active = False
 		# 游戏结束显示光标
 		pygame.mouse.set_visible(True)

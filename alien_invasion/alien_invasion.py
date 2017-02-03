@@ -39,7 +39,7 @@ def run_game():
 	play_button = Button(ai_settings, screen, 'PLAY')
 
 	# 创建得分板
-	sb = Scoreboard(ai_settings, screen, stats)
+	sb = Scoreboard(ai_settings, screen, stats, ship)
 
 	# 开始游戏的主循环
 	while True:
@@ -53,4 +53,4 @@ def run_game():
 		
 		gf.update_screen(ai_settings, screen, stats, play_button, sb, ship, bullets, aliens)
 
-run_game()  
+run_game()
