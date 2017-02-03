@@ -62,6 +62,7 @@ def check_play_button(ai_settings, screen, stats, scoreboard, play_button, ship,
 		# 重置游戏状态
 		stats.reset_stats()
 		scoreboard.prep_score()
+		scoreboard.prep_level()
 		stats.game_active = True
 
 		# 清空外星人和子弹
@@ -119,6 +120,9 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, scoreboard, ship, 
 		bullets.empty()
 		create_fleet(ai_settings, screen, ship, aliens)
 		ai_settings.increase_speed()
+		# 游戏等级加1
+		stats.level += 1
+		scoreboard.prep_level()
 
 
 def update_aliens(ai_settings, screen, stats, scoreboard, ship, bullets, aliens):

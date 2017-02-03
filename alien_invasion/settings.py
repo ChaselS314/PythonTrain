@@ -34,7 +34,7 @@ class Settings():
 		self.ship_speed_factor = 1.5
 		self.bullet_speed_factor = 1
 		self.alien_speed_factor_x = 1
-		self.alien_speed_factor_y = 50
+		self.alien_speed_factor_y = 5
 		
 		# 击杀单个外星人的初始得分
 		self.alien_score = 50

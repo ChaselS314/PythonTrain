@@ -35,5 +35,6 @@ class GameStats():
 		self.ships_left = self.ai_settings.ship_limit
 		# 当前得分
 		self.score = 0
+		self.level = 1
 
 
