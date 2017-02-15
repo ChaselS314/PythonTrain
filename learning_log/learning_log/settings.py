@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -136,7 +135,8 @@ BOOTSTRAP3 = {
         }
 
 # Heroku设置
-if os.getcwd() == '/app':
+cwd = os.getcwd()
+if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
             'default': dj_database_url.config(default='postgres://localhost')
@@ -145,8 +145,10 @@ if os.getcwd() == '/app':
     # 让request.is_secure()承认X-Forwarded-Proto头
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # 支持所有的主机头 (host header)
-    ALLOWED_HOSTS = ['*']
+    # 只允许Heroku托管这个项目
+    ALLOWED_HOSTS = ['cs-learninglog.herokuapp.com']
+
+    DEBUG = False
 
     # 静态资产配置
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
